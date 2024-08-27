@@ -31,6 +31,29 @@ public class LinkedListDemo {
          * String nodes.
          * 
          */
+LinkedList ll = new LinkedList();
+
+ll.add("sauce");
+ll.add(true);
+ll.remove(1);
+ll.add(5194);
+ll.add(false);
+ll.add(2019);
+ll.print();
+System.out.println("-----");
+Node head = ll.getHead();
+Node tail = ll.getTail();
+Node a1 = head;
+String a2 = (String) a1.getValue();
+a2=a2.toUpperCase();
+Node rand = head.getNext();
+Node amipresident = rand.getNext();
+Boolean future = (Boolean) amipresident.getValue();
+future=!future;
+Node covid = amipresident.getNext();
+int currentyear = (int) covid.getValue();
+currentyear*=5;
+System.out.println(a2+"\n"+future+"\n"+currentyear);
 
     }
 

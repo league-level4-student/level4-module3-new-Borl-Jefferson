@@ -1,6 +1,7 @@
 package _01_Spies_On_A_Train;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 import _00_Intro_to_Linked_Lists.LinkedList;
 import _00_Intro_to_Linked_Lists.Node;
@@ -22,7 +23,18 @@ public class SpiesOnATrain {
      * statements.
      */
     String findIntel(LinkedList<TrainCar> train, String[] clues) {
-
+    	System.out.println("test");
+Node head = train.getHead();
+TrainCar ab = (TrainCar) head.getValue();
+System.out.println(ab.questionPassenger());
+Node ad=train.getHead();
+Node ac;
+for(int i=0;i<train.size()-1;i++) {
+	ac = ad.getNext();
+	TrainCar bc = (TrainCar) ac.getValue();
+	System.out.println(bc.questionPassenger());
+	ad=ac;
+}
         return "";
 
     }
