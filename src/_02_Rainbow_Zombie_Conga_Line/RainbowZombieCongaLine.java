@@ -1,5 +1,7 @@
 package _02_Rainbow_Zombie_Conga_Line;
 
+import java.util.Iterator;
+
 import _00_Intro_to_Linked_Lists.LinkedList;
 import _00_Intro_to_Linked_Lists.Node;
 
@@ -23,27 +25,32 @@ public class RainbowZombieCongaLine {
 
     private LinkedList<Zombie> congaLine;
     private ZombieHatColor[] zombieHats;
-
+    
+   Node a = congaLine.getHead();
+        Node b;
     public RainbowZombieCongaLine() {
 
         congaLine = new LinkedList<Zombie>();
         zombieHats = ZombieHatColor.values();
+     
 
     }
 
     // Make the passed in zombie the first Zombie in the conga line!
     public void engine(Zombie dancer) {
-
+congaLine.setHead(dancer);
+a = congaLine.getHead();
     }
-
+    
     // Make the passed in zombie the last Zombie in the conga line!
     public void caboose(Zombie dancer) {
-
+congaLine.setTail(dancer);
+a = congaLine.getHead();
     }
 
     // Place the zombie at the designated position in the conga line!
     public void jumpInTheLine(Zombie dancer, int position) {
-
+congaLine.add(dancer);
     }
 
     /*
@@ -51,7 +58,12 @@ public class RainbowZombieCongaLine {
      * the conga line!
      */
     public void everyoneOut(Zombie dancer) {
-
+/*dancer.getZombieHatColor();
+Node head = congaLine.getHead();
+for(int i=0; i<congaLine.size();i++) {
+	if(head.getNext())
+	congaLine.remove(i);
+}*/
     }
 
     /*
