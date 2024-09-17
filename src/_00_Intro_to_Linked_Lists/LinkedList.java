@@ -1,5 +1,7 @@
 package _00_Intro_to_Linked_Lists;
 
+import java.util.Iterator;
+
 public class LinkedList<T> {
 
     /*
@@ -127,5 +129,7 @@ public class LinkedList<T> {
     public void setTail(Node<T> tail) {
         this.tail = tail;
     }
+    
+
 
 }

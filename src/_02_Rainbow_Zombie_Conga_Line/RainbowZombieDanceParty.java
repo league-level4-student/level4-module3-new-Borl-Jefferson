@@ -57,7 +57,7 @@ public class RainbowZombieDanceParty {
             }
 
             System.out.print("Action: " + zombieActions[randomAction]);
-            System.out.print(" | " + "Hat Color: " + hatColors[randomColor]);
+            System.out.print(" | " + "Hat Color: " + dancer.getZombieHatColor());
 
             switch (zombieActions[randomAction]) {
 
@@ -91,12 +91,12 @@ public class RainbowZombieDanceParty {
                 danceParty.rainbowBrains(dancer);
                 break;
             }
-
             System.out.println();
             congaLine.print();
             System.out.println();
 
             if (currentRound > 0 && currentRound % 5 == 0) {
+            	
                 System.out.println("Round: " + (currentRound));
                 System.out.println("Removing head and tail");
                 congaLine.remove(0);
