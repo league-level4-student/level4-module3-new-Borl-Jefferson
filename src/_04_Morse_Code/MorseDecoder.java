@@ -1,17 +1,21 @@
 package _04_Morse_Code;
 
+import java.util.Iterator;
+import java.util.Scanner;
+
 import _03_Intro_to_Binary_Trees.BinaryTree;
+import _03_Intro_to_Binary_Trees.Node;
 
 public class MorseDecoder {
 
     BinaryTree<MorseCode> mcTree = new BinaryTree<MorseCode>();
-
+String decoded="";
     public static void main(String[] args) {
 
         MorseDecoder md = new MorseDecoder();
         md.initialize();
         md.decode();
-
+        
     }
 
     public void initialize() {
@@ -62,9 +66,53 @@ public class MorseDecoder {
      * code on a single line and have it repeated back to them, decoded into the
      * english alphabet.
      * 
+     * -..- --- .- .- --.. -..
      */
     void decode() {
         String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+        
+        Scanner scannington = new Scanner(System.in);
+        
+        String[] words = morseCode.split(" ");
+        System.out.println(words.length);
+        for(int i=0; i<words.length; i++) {
+        	String word = words[i];
+			decode(word);
+			
+        }
+        System.out.println(decoded);
+        
+        System.out.print("\n ----------\n|Enter your own code\n|");
+        String thing = scannington.nextLine();
+      do {
+        String[] words2 = thing.split(" ");
+        System.out.println(words2.length);
+        decoded="";
+        for(int i=0; i<words2.length; i++) {
+        	String word2 = words2[i];
+			decode(word2);
+        }
+        System.out.println(decoded);
+         thing = scannington.nextLine();
+      }while(!thing.equals("stop"));
     }
+
+	private void decode(String word) {
+		System.out.print(word);
+      int sort = word.length();
+      System.out.println("   " + sort);
+      
+      Node<MorseCode> at = mcTree.getRoot();
+      
+      for (int i=0; i<word.length(); i++) {
+    	  if(word.charAt(i)=='.') {
+    		  at=at.getLeft();
+    	  }
+    	  else {
+    		  at=at.getRight();
+    	  }
+      }
+      decoded+=(at.getValue());
+	}
 
 }

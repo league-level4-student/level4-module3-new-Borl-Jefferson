@@ -26,6 +26,7 @@ public class RainbowZombieCongaLine {
     private LinkedList<Zombie> congaLine;
     private ZombieHatColor[] zombieHats;
     ZombieHatColor zhc;
+    Zombie zomb;
     LinkedList<Zombie> zom = new LinkedList<Zombie>();
      Node a;
         Node b;
@@ -40,21 +41,20 @@ public class RainbowZombieCongaLine {
 
     // Make the passed in zombie the first Zombie in the conga line!
     public void engine(Zombie dancer) {
-    	a=b;
-    	zom.add(dancer);
-congaLine.setHead(zom.getTail());
-a = congaLine.getHead();
+    	addtofront(dancer);
+    	a=congaLine.getHead();
     }
     
     // Make the passed in zombie the last Zombie in the conga line!
     public void caboose(Zombie dancer) {
-    	zom.add(dancer);
-congaLine.setTail(zom.getTail());
+    	
+congaLine.add(dancer);
 a = congaLine.getHead();
     }
 
     // Place the zombie at the designated position in the conga line!
     public void jumpInTheLine(Zombie dancer, int position) {
+    	addtofront(dancer);
     	a=congaLine.getHead();
     	b=a;
     	for(int i=1; i< position-2; i++) {
@@ -77,7 +77,7 @@ congaLine.add(dancer);
     	b=a;
 zhc = dancer.getZombieHatColor();
 Node head = congaLine.getHead();
-for(int i=0; i<congaLine.size()-1;i++) {
+for(int i=0; i<congaLine.size();i++) {
 	Zombie c = (Zombie) b.getValue();
 	if(c.getZombieHatColor().equals(zhc)) {
 		System.out.println("++++++++\n++++++++"+zhc+c.getZombieHatColor()+"\n+++++++\n+++++\n+=++");
@@ -88,7 +88,6 @@ for(int i=0; i<congaLine.size()-1;i++) {
 	}
 	b=b.getNext();
 }
-System.out.println(" -- not done");
     }
 
     /*
@@ -96,10 +95,23 @@ System.out.println(" -- not done");
      * from the conga line!
      */
     public void youAreDone(Zombie dancer) {
-    	b=a;
+    	System.out.println("\n");
+    	b=congaLine.getHead();
 zhc = dancer.getZombieHatColor();
+boolean run = true;
+for (int i = 0; i < congaLine.size(); i++) {
+	if(run) {
+		
+		zomb=(Zombie) b.getValue();
+		System.out.println(zhc +" <- zhc || zomb -> "+zomb.getZombieHatColor());
+		if(zomb.getZombieHatColor()==zhc) {
+			congaLine.remove(i);
+			run=false;
+		}
+		b=b.getNext();
+	}
+}
 
-System.out.println(" -- not done");
     }
 
     /*
@@ -107,7 +119,8 @@ System.out.println(" -- not done");
      * add one to the front, one to the end and one in the middle.
      */
     public void brains(Zombie dancer) {
-System.out.println(" -- not done");
+addtofront(dancer);
+congaLine.add(dancer);
     }
 
     /*
@@ -115,14 +128,8 @@ System.out.println(" -- not done");
      * color to the end of the line.
      */
     public void rainbowBrains(Zombie dancer) {
-    	zom.add(dancer);
-    	b=congaLine.getHead();
+    	addtofront(dancer);
     	
-    	
-    	for(int i=0;i<congaLine.size();i++) {
-    		congaLine.add(b);
-    		b=b.getNext();
-    	}
     		
     	
 	congaLine.add(new Zombie(zhc.R));
@@ -139,6 +146,15 @@ System.out.println(" -- not done");
         return congaLine;
     }
 
-   
+   public void addtofront(Zombie dancer) {
+	   b=congaLine.getHead();
+   	congaLine.add(dancer);
+   	for(int i=0;i<congaLine.size()-1;i++) {   	
+   		congaLine.add(congaLine.getHead().getValue());
+   		congaLine.remove(0);
+   	}
+   	 	
+   	
+   }
 
 }
